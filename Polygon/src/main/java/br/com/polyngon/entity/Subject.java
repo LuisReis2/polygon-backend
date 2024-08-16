@@ -1,7 +1,13 @@
 package br.com.polyngon.entity;
 
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "PLG_Subjects")
 public class Subject {
@@ -18,38 +24,18 @@ public class Subject {
     @Column(name = "icon",nullable = false)
     private long icon;
 
-    @Column(name = "Articles", nullable = false)
-    private int articles;
+    @Column(name = "qtd_articles", nullable = false)
+    private int qtd_articles;
 
-    public Subject(String name, long icon, int articles) {
+    //CARDINALIDADE
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.REMOVE)
+    private List<Article> articles;
+
+    //CONSTRUCTOR
+    public Subject(String name, long icon, int qtd_articles, List<Article> articles) {
         this.name = name;
         this.icon = icon;
+        this.qtd_articles = qtd_articles;
         this.articles = articles;
-    }
-
-    public int getArticles() {
-        return articles;
-    }
-
-    public void setArticles(int articles) {
-        this.articles = articles;
-    }
-
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public long getIcon() {
-        return icon;
-    }
-
-    public void setIcon(long icon) {
-        this.icon = icon;
     }
 }
