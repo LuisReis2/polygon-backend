@@ -1,13 +1,10 @@
 package br.com.polyngon.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+
 
 import javax.persistence.*;
 
 
-@Getter
-@Setter
 @Entity
 @Table(name = "PLG_Admins")
 public class Admin {

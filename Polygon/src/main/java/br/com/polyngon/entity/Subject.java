@@ -1,13 +1,11 @@
 package br.com.polyngon.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+
 
 import javax.persistence.*;
 import java.util.List;
 
-@Getter
-@Setter
+
 @Entity
 @Table(name = "PLG_Subjects")
 public class Subject {
@@ -22,20 +20,49 @@ public class Subject {
     private String name;
 
     @Column(name = "icon",nullable = false)
-    private long icon;
+    private String icon;
 
     @Column(name = "qtd_articles", nullable = false)
     private int qtd_articles;
 
     //CARDINALIDADE
-    @OneToMany(mappedBy = "subject", cascade = CascadeType.REMOVE)
-    private List<Article> articles;
+//    @OneToMany(mappedBy = "subject", cascade = CascadeType.REMOVE)
+//    private List<Article> articles;
+
+
+    public Subject(){
+
+    }
 
     //CONSTRUCTOR
-    public Subject(String name, long icon, int qtd_articles, List<Article> articles) {
+    public Subject(String name, String icon, int qtd_articles/*, List<Article> articles*/) {
         this.name = name;
         this.icon = icon;
         this.qtd_articles = qtd_articles;
-        this.articles = articles;
+        //this.articles = articles;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public int getQtd_articles() {
+        return qtd_articles;
+    }
+
+    public void setQtd_articles(int qtd_articles) {
+        this.qtd_articles = qtd_articles;
     }
 }
